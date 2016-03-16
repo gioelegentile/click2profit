@@ -1,6 +1,6 @@
-# click2profit
+# Click2profit
 
-Click2profit is a web application build with:
+Click2profit.it is a web application build with:
 - Spark Java
 - angularJS
 - MySQL database
