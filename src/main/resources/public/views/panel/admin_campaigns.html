@@ -1,0 +1,99 @@
+<div class="fixed-action-btn" style="bottom: 50px; right: 50px;">
+    <button ng-click="a.add=!a.add"
+            class="btn-floating btn-large waves-effect waves-light orange darken-2">
+        <i class="material-icons">add</i>
+    </button>
+</div>
+
+<div class="card-panel" style="margin:0;" ng-show="campaigns.length">
+    <table class="striped" id="table">
+        <thead>
+        <tr>
+            <th style="width: 15%">
+                <a class="btn-flat no-padding" ng-click="order('company')">Azienda</a>
+                <span class="sortorder" ng-show="predicate === 'company'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th style="width: 15%">
+                <a class="btn-flat no-padding" ng-click="order('type')">Tipo</a>
+                <span class="sortorder" ng-show="predicate === 'type'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th style="width: 15%">
+                <a class="btn-flat no-padding" ng-click="order('notes')">Note</a>
+                <span class="sortorder" ng-show="predicate === 'notes'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th style="width: 15%">
+                <a class="btn-flat no-padding" ng-click="order('link')">Link</a>
+                <span class="sortorder" ng-show="predicate === 'link'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th style="width: 10%">
+                <a class="btn-flat no-padding" ng-click="order('profit')">Profitto</a>
+                <span class="sortorder" ng-show="predicate === 'profit'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th style="width: 20%">
+                <a class="btn-flat no-padding" ng-click="order('deadline')">Scadenza</a>
+                <span class="sortorder" ng-show="predicate === 'deadline'" ng-class="{reverse:reverse}"></span>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="campaign in campaigns | orderBy:predicate:reverse">
+            <td>{{campaign.company}}</td>
+            <td>{{campaign.type}}</td>
+            <td>{{campaign.notes}}</td>
+            <td><a href="{{campaign.link}}" target="_blank">{{campaign.link}}</a></td>
+            <td>{{campaign.profit}}</td>
+            <td>{{campaign.deadline}}</td>
+        </tr>
+        <tr id="insert-form" style="height: 0%" ng-if="a.add">
+            <td style="padding: 0 5px 0 5px;">
+                <div class="input-field" style="display:inline-block; width: 87%">
+                    <input placeholder="Azienda"
+                           type="text" maxlength="40" ng-model="a.company">
+                </div>
+            </td>
+            <td style="padding: 0 5px 0 5px;">
+                <div class="input-field" style="display:inline-block; width: 87%">
+                    <input placeholder="Tipo"
+                           type="text" maxlength="40" ng-model="a.type">
+                </div>
+            </td>
+            <td style="padding: 0 5px 0 5px;">
+                <div class="input-field" style="display:inline-block; width: 87%">
+                    <input placeholder="Note"
+                           type="text" maxlength="40" ng-model="a.notes">
+                </div>
+            </td>
+            <td style="padding: 0 5px 0 5px;">
+                <div class="input-field" style="display:inline-block; width: 87%">
+                    <input placeholder="Link"
+                           type="text" maxlength="40" ng-model="a.link">
+                </div>
+            </td>
+            <td style="padding: 0 5px 0 5px;">
+                <div class="input-field" style="display:inline-block; width: 87%">
+                    <input placeholder="Profitto"
+                           type="number" maxlength="6" ng-model="a.profit">
+                </div>
+            </td>
+            <td style="padding: 0 5px 0 5px;">
+                <div class="input-field" style="display:inline-block; width: 70%">
+                    <input class="browser-default" type="date" id="a.date">
+                </div>
+                <div style="display:inline-block; width: 27%" class="right-align">
+                    <a ng-click="confirm_function()"
+                       class="btn-floating btn waves-effect waves-light orange darken-2">
+                        <i class="material-icons">done</i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="center" ng-hide="campaigns.length" style="margin-top: 80px;">
+    <p style="font-size:1.40rem;margin-bottom:0;" class="blue-grey-text text-darken-2">
+        Non ci sono campagne disponibili al momento.
+    </p>
+</div>

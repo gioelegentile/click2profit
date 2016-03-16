@@ -1,0 +1,167 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Check test</title>
+
+    <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.19.0.css">
+    <script src="//code.jquery.com/qunit/qunit-1.19.0.js"></script>
+    <script src="check.js"></script>
+
+    <script>
+
+        var badWords_cases = [
+            "fuckyourmotha",
+            "lickmyass",
+            "stupidasshole",
+            "cazzo",
+            "ytb",
+            "twttr",
+            "asd",
+            "basterds",
+            "ciao",
+            "fb"
+        ];
+
+        var badWords_expected = [
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true
+        ];
+
+        var customURL_cases = [
+            "abc",
+            "123",
+            "abc123",
+            "a b12",
+            "asd%&/",
+            "123?",
+            "456_",
+            "fb-12",
+            "db0=s"
+        ];
+
+        var customURL_expected = [
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            true,
+            true,
+            false
+        ];
+
+        var longURL_cases = [
+            "www.google.it",
+            "http://www.imdb.com",
+            "https://www.google.com",
+            "https://it.wikipedia.org/wiki/Pagina_principale",
+            "www.google.it/",
+            "http://google.fr/",
+            "htp://www.google.com",
+            "http//www.google.com",
+            "ww.google.com",
+            "www.google.comcom",
+            "www.goo gle.com",
+            "www.goo%gle.com",
+            "www.google",
+            "google.com",
+            "google"
+        ];
+
+        var longURL_expected = [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false
+        ];
+
+        var domains_cases = [
+            "treasurebook1.co.uk",
+            "treching.net",
+            "trenz.pl",
+            "treplikon.com",
+            "trickip.org",
+            "trident-fall.com",
+            "google.com",
+            "www.youtube.com"
+        ];
+
+        var domains_expected = [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true
+        ];
+
+        QUnit.test("Bad Words", function (assert) {
+            function test(then, expected, value) {
+                assert.equal(isNotABadWord(then), expected, value);
+            }
+
+            for (var i = 0; i < badWords_cases.length; i++) {
+                test(badWords_cases[i], badWords_expected[i], badWords_cases[i] + (isNotABadWord(badWords_cases[i]) == true ? " - Allowed" : " - Not allowed"));
+            }
+        });
+
+        QUnit.test("Custom URL", function (assert) {
+            function test(then, expected, value) {
+                assert.equal(isLetterOrDigit(then), expected, value);
+            }
+
+            for (var i = 0; i < customURL_cases.length; i++) {
+                test(customURL_cases[i], customURL_expected[i], customURL_cases[i] + (isLetterOrDigit(customURL_cases[i]) == true ? " - Allowed" : " - Not allowed"));
+            }
+        });
+
+        QUnit.test("Long URL", function (assert) {
+            function test(then, expected, value) {
+                assert.equal(checkLongUrl(then), expected, value);
+            }
+
+            for (var i = 0; i < longURL_cases.length; i++) {
+                test(longURL_cases[i], longURL_expected[i], longURL_cases[i] + (checkLongUrl(longURL_cases[i]) == true ? " - Allowed" : " - Not allowed"));
+            }
+        });
+
+        QUnit.test("Bad Domain", function (assert) {
+            function test(then, expected, value) {
+                assert.equal(isNotABadDomain(then), expected, value);
+            }
+
+            for (var i = 0; i < domains_cases.length; i++) {
+                test(domains_cases[i], domains_expected[i], domains_cases[i] + (isNotABadDomain(domains_cases[i]) == true ? " - Allowed" : " - Not allowed"));
+            }
+        });
+
+    </script>
+</head>
+<body>
+
+<div id="qunit"></div>
+
+</body>
+</html>

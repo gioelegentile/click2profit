@@ -1,0 +1,36 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="clicktoprofit_2:war exploded">
+    <output-path>$PROJECT_DIR$/target/ClickToProfit-1.0</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="clicktoprofit_2" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.google.guava:guava:18.0" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.38" />
+          <element id="library" level="project" name="Maven: com.sparkjava:spark-core:2.2" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.7" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-server:9.0.2.v20130417" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-http:9.0.2.v20130417" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-util:9.0.2.v20130417" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-io:9.0.2.v20130417" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-webapp:9.0.2.v20130417" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-xml:9.0.2.v20130417" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-servlet:9.0.2.v20130417" />
+          <element id="library" level="project" name="Maven: org.eclipse.jetty:jetty-security:9.0.2.v20130417" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.7.12" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.3.1" />
+          <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.4" />
+          <element id="library" level="project" name="Maven: javax.mail:mail:1.4" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/ClickToProfit-1.0/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="clicktoprofit_2/web/Web" />
+    </root>
+  </artifact>
+</component>

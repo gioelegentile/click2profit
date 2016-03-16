@@ -1,0 +1,48 @@
+<div class="card-panel" style="margin:0;">
+    <table class="striped" id="table">
+        <thead>
+        <tr>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('email')">Email</a>
+                <span class="sortorder" ng-show="predicate === 'email'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('name')">Nome</a>
+                <span class="sortorder" ng-show="predicate === 'name'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('surname')">Cognome</a>
+                <span class="sortorder" ng-show="predicate === 'surname'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('birthdate')">Data di nascita</a>
+                <span class="sortorder" ng-show="predicate === 'birthdate'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th class="right-align">
+                <a class="btn-flat no-padding" ng-click="order('current_balance')">Saldo attuale</a>
+                <span class="sortorder" ng-show="predicate === 'current_balance'" ng-class="{reverse:reverse}"></span>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="user in users | orderBy:predicate:reverse">
+            <td>{{user.email}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.surname}}</td>
+            <td>{{user.birthdate}}</td>
+            <td class="right-align">
+                <div class="input-field" style="margin:0">
+                    &euro;<input class="active" style="width: 15%; margin:0"
+                                 type="text" maxlength="6" ng-model="user.current_balance"
+                                 value="{{user.current_balance}}">
+                    <a ng-click="confirm_function()" style="width: 10%"
+                       class="btn-flat orange-text darken-2">
+                        <i class="material-icons">done</i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

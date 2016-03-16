@@ -1,0 +1,66 @@
+<script src="/scripts/md5.js"></script>
+<div class="row">
+    <div class="col s12" style="opacity: 0.85;">
+        <form class="form-horizontal" role="form" ng-submit="updateUserData()">
+            <div class="card-panel">
+                <div class="row" style="margin-bottom: 0;">
+                    <div class="input-field col s6" style="padding-left:0;">
+                        <input type="text" class="active" value="{{name}}" maxlength="30" ng-model="name" id="name">
+                        <label class="active" for="name">Nome</label>
+                    </div>
+                    <div class="input-field col s6" style="padding: 0;">
+                        <input type="text" class="active" value="{{surname}}" maxlength="30" ng-model="surname"
+                               id="surname">
+                        <label class="active" for="surname">Cognome</label>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input type="text" class="active" value="{{email}}" maxlength="80" ng-model="email" id="email">
+                    <label class="active" for="email">E-mail</label>
+                </div>
+
+                <div style="display: table; width:100%;">
+                    <div style="display: table-cell; vertical-align: middle;">
+                        <label style="font-size: 1.1rem;" class="grey-text darken-2">
+                            Data di nascita: <b>{{birthdate}}</b></label>
+                    </div>
+                    <div style="display: table-cell; vertical-align: middle;">
+                        <a style="padding: 0 10px 0 10px;" id="change_data_button"
+                                class="orange darken-2 btn">
+                            <i class="material-icons">mode_edit</i>
+                        </a>
+                    </div>
+                    <div style="display: table-cell; vertical-align: middle;">
+                            <select disabled class="browser-default" id="day"
+                                    ng-options="option.name for option in days.availableOptions track by option.id"
+                                    ng-model="day">
+                                <option value="" disabled selected>gg</option>
+                            </select>
+                    </div>
+                    <div style="display: table-cell; vertical-align: middle;">
+                        <select disabled class="browser-default" id="month"
+                                ng-options="option.name for option in months.availableOptions track by option.id"
+                                ng-model="month">
+                            <option value="" disabled selected>mm</option>
+                        </select>
+                    </div>
+                    <div style="display: table-cell; vertical-align: middle;">
+                        <select disabled class="browser-default" id="year"
+                                ng-options="option.name for option in years.availableOptions track by option.id"
+                                ng-model="year">
+                            <option value="" disabled selected>aaaa</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+
+                <div>
+                    <button type="submit"
+                            class="orange darken-2 waves-effect waves-light btn-large">Conferma
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

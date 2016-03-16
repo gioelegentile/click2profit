@@ -1,0 +1,66 @@
+<div class="fixed-action-btn" style="bottom: 50px; right: 50px;">
+    <button id="insert-btn" ng-click="a.add=!a.add"
+            class="btn-floating btn-large waves-effect waves-light orange darken-2">
+        <i class="material-icons">add</i>
+    </button>
+</div>
+
+<div class="card-panel" style="margin:0;" ng-show="payments.length">
+    <table class="striped">
+        <thead>
+        <tr>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('method')">Metodo</a>
+                <span class="sortorder" ng-show="predicate === 'method'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('date')">Data</a>
+                <span class="sortorder" ng-show="predicate === 'date'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th class="right-align">
+                <a class="btn-flat no-padding" ng-click="order('profit')">Profitto</a>
+                <span class="sortorder" ng-show="predicate === 'profit'" ng-class="{reverse:reverse}"></span>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="payment in payments | orderBy:predicate:reverse">
+            <td>{{payment.method}}</td>
+            <td>{{payment.date}}</td>
+            <td class="right-align">{{payment.payment}} &euro;</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="center" ng-hide="payments.length" style="margin-top: 80px;">
+    <p style="font-size:1.40rem;margin-bottom:0;" class="blue-grey-text text-darken-2">
+        Non hai ancora ricevuto alcun pagamento.
+    </p>
+</div>
+
+
+<div class="card-panel row" style="margin:20px 0 0 0;" ng-if="a.add">
+    <table>
+        <tr>
+            <th style="width: 40%">
+                <select
+                        class="browser-default"
+                        ng-model="a.selectedMethod"
+                        ng-options="method.method + ' - ' + method.notes for method in methods">
+                    <option value="" disabled selected>Metodo</option>
+                </select>
+            </th>
+            <th ng-show="a.selectedMethod">
+                <div class="input-field" style="margin:0">
+                    &euro; <input class="active" style="width: 15%; margin:0" id="amount"
+                                 type="number" step="any" maxlength="6" ng-model="a.amount"/>
+                    <label class="active" for="amount">Ammontare</label>
+                </div>
+            </th>
+            <th ng-show="a.selectedMethod"><a style="padding: 0 5px 0 5px;" ng-click="confirm_function()" class="btn-flat orange-text darken-2">
+                <i class="material-icons">done</i>
+            </a></th>
+        </tr>
+    </table>
+</div>

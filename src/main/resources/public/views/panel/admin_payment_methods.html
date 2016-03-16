@@ -1,0 +1,43 @@
+<div class="fixed-action-btn" style="bottom: 50px; right: 50px;">
+    <button id="insert-btn" ng-click="user.add=!user.add"
+            class="btn-floating btn-large waves-effect waves-light orange darken-2">
+        <i class="material-icons">add</i>
+    </button>
+</div>
+
+<div class="card-panel" style="margin:0;" ng-show="payment_methods.length">
+    <table class="striped" id="table">
+        <thead>
+        <tr>
+            <th>Metodo di pagamento</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="payment_method in payment_methods">
+            <td>{{payment_method.method}}</td>
+        </tr>
+        <tr id="insert-form" style="height: 0%" ng-if="user.add">
+            <td style="padding: 0 5px 0 5px;">
+                <div class="input-field" style="display:inline-block; width: 30%">
+                    <input placeholder="Nome metodo"
+                           type="text" maxlength="40" ng-model="user.method">
+                </div>
+                <div style="display:inline-block; width: 69%" class="right-align">
+                    <a style="margin-right: 10px;" ng-click="confirm_function()"
+                       class="btn-flat orange-text darken-2">
+                        <i class="material-icons">done</i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="center" ng-hide="payment_methods.length || user.add" style="margin-top: 80px;">
+    <p style="font-size:1.40rem;margin-bottom:0;" class="blue-grey-text text-darken-2">
+        Non hai ancora effettuato nessuna operazione. Consulta la sezione <a ui-sref="panel.campaigns">campagne</a> per
+        cominciare!
+    </p>
+</div>

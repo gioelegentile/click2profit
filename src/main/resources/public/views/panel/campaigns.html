@@ -1,0 +1,49 @@
+<div class="card-panel" style="margin:0;" ng-show="campaigns.length">
+    <table class="striped" id="table">
+        <thead>
+        <tr>
+            <th style="width: 18%">
+                <a class="btn-flat no-padding" ng-click="order('company')">Azienda</a>
+                <span class="sortorder" ng-show="predicate === 'company'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th style="width: 18%">
+                <a class="btn-flat no-padding" ng-click="order('type')">Tipo</a>
+                <span class="sortorder" ng-show="predicate === 'type'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th style="width: 18%">
+                <a class="btn-flat no-padding" ng-click="order('notes')">Note</a>
+                <span class="sortorder" ng-show="predicate === 'notes'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th style="width: 18%">
+                <a class="btn-flat no-padding" ng-click="order('link')">Link</a>
+                <span class="sortorder" ng-show="predicate === 'link'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th style="width: 10%">
+                <a class="btn-flat no-padding" ng-click="order('profit')">Profitto</a>
+                <span class="sortorder" ng-show="predicate === 'profit'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th class="right-align">
+                <a class="btn-flat no-padding" ng-click="order('deadline')">Scadenza</a>
+                <span class="sortorder" ng-show="predicate === 'deadline'" ng-class="{reverse:reverse}"></span>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="campaign in campaigns | orderBy:predicate:reverse">
+            <td>{{campaign.company}}</td>
+            <td>{{campaign.type}}</td>
+            <td>{{campaign.notes}}</td>
+            <td><a href="{{campaign.link}}" target="_blank">{{campaign.link}}</a></td>
+            <td>{{campaign.profit}} &euro;</td>
+            <td class="right-align">{{campaign.deadline}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="center" ng-hide="campaigns.length" style="margin-top: 80px;">
+    <p style="font-size:1.40rem;margin-bottom:0;" class="blue-grey-text text-darken-2">
+        Non ci sono campagne disponibili al momento.
+    </p>
+</div>

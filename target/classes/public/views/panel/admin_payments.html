@@ -1,0 +1,84 @@
+<select class="browser-default" ng-model="selectedUser" ng-change="change()"
+        ng-options="user.name + ' ' + user.surname + ' - ' + user.email for user in users">
+    <option value="" disabled selected>Utente</option>
+</select>
+<br>
+
+<div class="valign center" ng-if="!selectedUser">
+    <i style="transform: rotate(-90deg);"
+       class="large material-icons blue-grey-text-text text-darken-2">trending_flat</i>
+    <h4>Seleziona un utente!</h4>
+</div>
+
+<div class="fixed-action-btn" style="bottom: 50px; right: 50px;" ng-if="selectedUser">
+    <button id="insert-btn" ng-click="a.add=!a.add"
+            class="btn-floating btn-large waves-effect waves-light orange darken-2">
+        <i class="material-icons">add</i>
+    </button>
+</div>
+
+<div class="card-panel" style="margin:0 0 20px 0;" ng-if="selectedUser">
+    <div ng-if="a.payments.length">
+        <h5>{{user.name}} {{user.surname}}</h5>
+        <table class="striped" id="table">
+            <thead>
+            <tr>
+                <th style="width: 30%">
+                    <a class="btn-flat no-padding" ng-click="order('method')">Metodo</a>
+                    <span class="sortorder" ng-show="predicate === 'method'" ng-class="{reverse:reverse}"></span>
+                </th>
+                <th style="width: 30%">
+                    <a class="btn-flat no-padding" ng-click="order('date')">Data</a>
+                    <span class="sortorder" ng-show="predicate === 'date'" ng-class="{reverse:reverse}"></span>
+                </th>
+                <th class="right-align">
+                    <a class="btn-flat no-padding" ng-click="order('payment')">Pagamento</a>
+                    <span class="sortorder" ng-show="predicate === 'payment'" ng-class="{reverse:reverse}"></span>
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="payment in a.payments | orderBy:predicate:reverse">
+                <td>{{payment.method}}</td>
+                <td>{{payment.date}}</td>
+                <td class="right-align">{{payment.payment}} &euro;</td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="center" ng-if="!a.payments.length">
+        <p style="font-size:1.40rem;" class="blue-grey-text text-darken-2">
+            Questo utente non ha ancora ricevuto pagamenti.
+        </p>
+    </div>
+</div>
+
+<div class="card-panel row" style="margin:20px 0 0 0;" ng-if="a.add">
+    <table>
+        <tr>
+            <td style="padding: 0 5px 0 5px;">
+                <select class="browser-default"
+                        ng-model="a.selectedMethod"
+                        ng-options="method.method +' - '+ method.notes for method in a.methods">
+                    <option value="" disabled selected>Metodo</option>
+                </select>
+            </td>
+            <td style="padding: 0 5px 0 5px;">{{date}}</td>
+            <td style="padding: 0 5px 0 5px;">
+                <div class="input-field">
+                    <input placeholder="Pagamento"
+                           type="number" maxlength="5" ng-model="a.payment">
+                </div>
+            </td>
+            <td style="padding: 0 5px 0 5px;" class="right-align">
+                <a ng-click="confirm_function()"
+                   class="btn-flat orange-text darken-2">
+                    <i class="material-icons">done</i>
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>

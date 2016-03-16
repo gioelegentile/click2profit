@@ -1,0 +1,91 @@
+<style>
+    header, main, footer {
+        padding-left: 240px;
+    }
+
+    @media only screen and (max-width: 992px) {
+        header, main, footer {
+            padding-left: 0;
+        }
+    }
+
+    .sortorder:after {
+        content: '\25b2';
+    }
+
+    .sortorder.reverse:after {
+        content: '\25bc';
+    }
+</style>
+
+<script src="/js/materialize.js"></script>
+<script src="/js/materialize.min.js"></script>
+<script src="/scripts/check_functions.js"></script>
+<div ng-if="panel.show">
+    <script src="/js/materialize.js"></script>
+    <script src="/js/materialize.min.js"></script>
+    <header>
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a ui-sref="panel.personal_data">Dati personali</a></li>
+            <li><a ui-sref="panel.change_password">Cambia password</a></li>
+            <li class="divider"></li>
+            <li><a ui-sref="home" ng-click="exit()">Esci</a></li>
+        </ul>
+        <nav class="blue-grey darken-2" style="float: left;position: fixed;top:0; padding-right:240px; z-index:1;">
+            <div class="nav-wrapper">
+                <a style="padding-left:20px; font-size:1.5rem;" class="brand-logo">{{page.parentproperty}}</a>
+                <ul class="right hide-on-med-and-down">
+                    <li style="background-color: #455a64;"><a style="font-size:1.5rem;">Saldo attuale:
+                        {{page.current_balance}} &euro;</a></li>
+                    <li class="divider"></li>
+                    <li><a style="font-size:1.5rem;" class="dropdown-button" href="!#" data-activates="dropdown1">
+                        {{page.name}} {{page.surname}}<i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+            </div>
+        </nav>
+        <ul id="slide-out" class="side-nav fixed blue-grey darken-2">
+            <li class="orange darken-2"><a ui-sref="home" id="logo-container" class="brand-logo">
+                <img style="margin-top:15px;" src="/logo/logo-user-panel.png">
+            </a></li>
+            <div style="overflow-y: auto; height: 82%;">
+                <li class="disabled" ng-if="user.isAdmin">
+                    <p class="white-text" style="font-size: 1.5rem;margin-bottom: 0;">Utente</p>
+
+                    <div class="blue-grey darken-3" style="height: 2px;"></div>
+                </li>
+                <li><a class="white-text" ui-sref="panel.operations">Operazioni</a></li>
+                <li><a class="white-text" ui-sref="panel.payment_methods">Metodi di pagamento</a></li>
+                <li><a class="white-text" ui-sref="panel.payments">Pagamenti</a></li>
+                <li><a class="white-text" ui-sref="panel.campaigns">Campagne</a></li>
+                <li class="disabled" ng-if="user.isAdmin">
+                    <p class="white-text" style="font-size: 1.5rem;margin-bottom: 0;">Admin</p>
+
+                    <div class="blue-grey darken-3" style="height: 2px;"></div>
+                </li>
+                <li><a class="white-text" ui-sref="panel.admin_campaigns" ng-if="user.isAdmin">Gestisci campagne</a></li>
+                <li><a class="white-text" ui-sref="panel.admin_operations_temp" ng-if="user.isAdmin">Richieste
+                    operazioni</a></li>
+                <li><a class="white-text" ui-sref="panel.admin_payments_temp" ng-if="user.isAdmin">Richieste
+                    pagementi</a></li>
+                <li><a class="white-text" ui-sref="panel.admin_operations" ng-if="user.isAdmin">Operazioni utenti</a>
+                </li>
+                <li><a class="white-text" ui-sref="panel.admin_payments" ng-if="user.isAdmin">Pagamenti utenti</a></li>
+                <li><a class="white-text" ui-sref="panel.admin_payment_methods" ng-if="user.isAdmin">Metodi di
+                    pagamento</a></li>
+                <li><a class="white-text" ui-sref="panel.admin_users" ng-if="user.isAdmin">Lista utenti</a></li>
+                <li><a class="white-text" ui-sref="panel.admin_admins" ng-if="user.isAdmin">Lista admin</a></li>
+                <li><a class="white-text" ui-sref="panel.admin_strings" ng-if="user.isAdmin">Stringhe home</a></li>
+            </div>
+            <div class="blue-grey darken-3" style="padding:0 15px 0 15px;height: 2px;"></div>
+            <p class="center white-text light"
+               style="font-size:0.8rem; position:absolute; bottom:20px; width:240px; height:60px;">Copyright © 2015
+                Click2profit</p>
+        </ul>
+    </header>
+
+    <main>
+        <div ui-view style="margin:15px; padding-top:64px; padding-bottom: 110px; z-index: 0"
+             autoscroll="true"></div>
+    </main>
+
+</div>

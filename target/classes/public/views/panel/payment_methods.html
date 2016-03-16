@@ -1,0 +1,50 @@
+<div class="fixed-action-btn" style="bottom: 50px; right: 50px;">
+    <button ng-click="a.add=!a.add; show = true;"
+            class="btn-floating btn-large waves-effect waves-light orange darken-2">
+        <i class="material-icons">add</i>
+    </button>
+</div>
+
+<div class="card-panel" style="margin:0;" ng-show="payment_methods.length || show">
+    <table class="striped" id="table">
+        <thead>
+        <tr>
+            <th style="width: 30%;">Metodo</th>
+            <th>Note</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="payment_method in payment_methods">
+            <td>{{payment_method.method}}</td>
+            <td>{{payment_method.notes}}</td>
+        </tr>
+        <tr id="insert-form" style="height: 0%" ng-if="a.add">
+            <td style="padding: 0 5px 0 5px;">
+                <select class="browser-default"
+                        ng-model="a.selectedMethod"
+                        ng-options="option.method for option in methods track by option.id_payment_method">
+                    <option value="" disabled selected>Metodo</option>
+                </select>
+            </td>
+            <td style="padding: 0 5px 0 5px;">
+                <div class="input-field" style="display:inline-block; width: 87%">
+                    <input placeholder="Inserisci informazioni per il metodo selezionato" type="text" maxlength="200"
+                           ng-model="a.notes" id="notes">
+                </div>
+                <div style="display:inline-block; width: 10%" class="right-align">
+                    <a ng-click="confirm_function()" class="btn-floating btn waves-effect waves-light orange darken-2">
+                        <i class="material-icons">done</i>
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="center" ng-hide="show" style="margin-top: 80px;">
+    <p style="font-size:1.40rem;margin-bottom:0;" class="blue-grey-text text-darken-2">
+        Non hai ancora aggiunto nessun metodo di pagamento. Fallo ora!
+    </p>
+</div>

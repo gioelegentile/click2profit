@@ -1,0 +1,68 @@
+<div class="card-panel" style="margin:0 0 20px 0;" ng-show="operations_temp.length">
+    <table class="striped" id="table">
+        <thead>
+        <tr>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('name')">Nome</a>
+                <span class="sortorder" ng-show="predicate === 'name'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('surname')">Cognome</a>
+                <span class="sortorder" ng-show="predicate === 'surname'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('company')">Azienda</a>
+                <span class="sortorder" ng-show="predicate === 'company'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('type')">Tipo</a>
+                <span class="sortorder" ng-show="predicate === 'type'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('link')">Link</a>
+                <span class="sortorder" ng-show="predicate === 'link'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('date')">Data e ora</a>
+                <span class="sortorder" ng-show="predicate === 'date'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('profit')">Profitto</a>
+                <span class="sortorder" ng-show="predicate === 'profit'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="operation_temp in operations_temp | orderBy:predicate:reverse">
+            <td>{{operation_temp.name}}</td>
+            <td>{{operation_temp.surname}}</td>
+            <td>{{operation_temp.company}}</td>
+            <td>{{operation_temp.type}}</td>
+            <td><a href="{{operation_temp.link}}" target="_blank">{{operation_temp.link}}</a></td>
+            <td>{{operation_temp.date}}, alle {{operation_temp.time}}</td>
+            <td>{{operation_temp.profit}} &euro;</td>
+            <td class="right-align">
+                <a ng-click="confirm_function()"
+                   class="btn-flat orange-text darken-2">
+                    <i class="material-icons">done</i>
+                </a>
+            </td>
+            <td class="right-align">
+                <a style="padding-left:0;" ng-click="delete_function()"
+                   class="btn-flat orange-text darken-2">
+                    <i class="material-icons">delete</i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="center" ng-hide="operations_temp.length" style="margin-top: 80px;">
+    <p style="font-size:1.40rem;margin-bottom:0;" class="blue-grey-text text-darken-2">
+        Non sono presenti richieste in sospeso.
+    </p>
+</div>

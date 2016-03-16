@@ -1,0 +1,45 @@
+<script src="/scripts/md5.js"></script>
+<script src="/js/materialize.js"></script>
+<script src="/js/materialize.min.js"></script>
+<div style="position: absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    overflow:hidden;" class="valign-wrapper orange lighten-1">
+    <div class="container" style="width:33%;">
+        <form class="form-horizontal" role="form">
+            <div class="card-panel">
+                <h5 class="blue-grey-text text-darken-2 center" style="margin-top:0;"><a ui-sref="home">Click2profit</a></h5>
+
+                <div class="input-field">
+                    <input type="text" maxlength="80" ng-model="email" id="email">
+                    <label for="email">E-mail</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" maxlength="30" ng-model="password" id="password">
+                    <label for="password">Password</label>
+                </div>
+
+                <div style="display: table; width:100%;">
+                    <div style="display: table-cell; vertical-align: middle;">
+
+                            <input type="checkbox" id="checkboxlogin" ng-model="checkboxlogin">
+                            <label style="font-size:0.75rem;" for="checkboxlogin">Mantieni
+                                l'accesso</label>
+
+                    </div>
+                    <div class="right" style="display: table-cell; font-size:0.8rem; vertical-align: middle;">
+                        <a ui-sref="password_recovery">Password dimenticata?</a>
+                    </div>
+                </div>
+                <br>
+                <div class="right-align col s12">
+                    <a ng-click="login()"
+                            class="waves-effect waves-orange btn-flat orange-text text-darken-2">Accedi
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

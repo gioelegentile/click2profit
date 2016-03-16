@@ -1,0 +1,238 @@
+<script src="/scripts/scrollTo.js"></script>
+
+
+<div class="navbar-fixed">
+    <nav class=" blue-grey darken-2" role="navigation">
+        <div id="sidebar" class="nav-wrapper container">
+            <ul class="left hide-on-med-and-down">
+                <li><a style="height: 64px;" id="logo-container">
+                    <img style="margin-top:15px;" src="/logo/favicon.png">
+                </a></li>
+                <li><a id="registratilink" href="#">Registrati</a></li>
+                <li><a id="chisiamolink" href="#">Chi siamo</a></li>
+                <li><a id="faqlink" href="#">FAQ</a></li>
+                <li><a id="pagamentilink" href="#">Pagamenti</a></li>
+                <li><a id="contattilink" href="#">Contatti</a></li>
+            </ul>
+
+            <div class="right" style="margin-right: 15px;"><a class="btn orange darken-2" ng-click="login()">{{ btnLogin }}</a></div>
+
+            <!--<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>-->
+        </div>
+    </nav>
+</div>
+
+<div class="row container" style="padding-top:20px;" id="registrati">
+    <div class="col s6" style="padding-top:30px;padding-right:20px">
+        <div class="header center">
+            <img src="/logo/logo.png">
+        </div>
+        <div class="row center">
+            <p style="font-size:1.55rem;" class="blue-grey-text text-darken-2 header col s12 light">
+                <b>{{strings.header1}}</b>
+            </p>
+
+            <p style="font-size:1.55rem;margin:0;" class="blue-grey-text text-darken-2 header col s12 light">
+                <b>{{strings.header2}}</b>
+            </p>
+        </div>
+    </div>
+    <div class="col s6" style="opacity: 0.85;">
+        <form class="form-horizontal" role="form" ng-submit="signUp()">
+            <div class="card-panel">
+                <h5 class="blue-grey-text text-darken-2 center" style="margin-top:0;">Registrati subito!</h5>
+
+                <div style="margin-bottom: 0; width:100%">
+                    <div class="input-field " style="width:49%;display:inline-block; padding:0 5px 0 0;" >
+                        <input type="text" maxlength="30" ng-model="name" id="name">
+                        <label for="name">Nome</label>
+                    </div>
+                    <div class="input-field " style="width:49%;display:inline-block; padding:0 0 0 5px; ">
+                        <input type="text" maxlength="30" ng-model="surname" id="surname">
+                        <label for="surname">Cognome</label>
+                    </div>
+                </div>
+                <div class="input-field">
+                    <input type="text" maxlength="80" ng-model="email" id="email">
+                    <label for="email">E-mail</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" maxlength="30" ng-model="password" id="password">
+                    <label for="password">Password</label>
+                </div>
+                <label class="col s4" for="data" style="font-size:1rem; padding:0; line-height: 57px"
+                       class="grey-text darken-2">
+                    Data di nascita:</label>
+
+                <div id="data">
+                    <div class="input-field col s2" style="padding:2px;margin-top:3px;">
+                        <select class="browser-default"
+                                ng-options="option.name for option in days.availableOptions track by option.id"
+                                ng-model="selectedDay">
+                            <option value="" disabled selected>gg</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s3" style="padding:2px;margin-top:3px;">
+                        <select class="browser-default"
+                                ng-options="option.name for option in months.availableOptions track by option.id"
+                                ng-model="selectedMonth">
+                            <option value="" disabled selected>mm</option>
+                        </select>
+                    </div>
+                    <div class="input-field col s3" style="padding:2px;margin-top:3px;">
+                        <select class="browser-default"
+                                ng-options="option.name for option in years.availableOptions track by option.id"
+                                ng-model="selectedYear">
+                            <option value="" disabled selected>aaaa</option>
+                        </select>
+                    </div>
+                </div>
+
+                <br>
+
+                <div>
+                    <div style="display: inline-block;vertical-align: middle;">
+                        <p style="margin-bottom:5px; ">
+                            <input type="checkbox" id="checkbox1" ng-model="checkbox1">
+                            <label style="font-size:0.75rem;line-height: 120%;" for="checkbox1">Autorizzo il trattamento
+                                dei dati personali contenuti nella mia
+                                registrazione in base <a target="_blank" rel="nofollow"
+                                                         href="http://www.privacy.it/modelli/mod01.html">
+                                    art. 13 del D. Lgs. 196/2003.</a></label>
+                        </p>
+
+                        <p style="margin-bottom:15px; margin-top:0;">
+                            <input type="checkbox" id="checkbox2" ng-model="checkbox2">
+                            <label style="font-size:0.75rem;line-height: 120%;" for="checkbox2">Autorizzo a comunicare i
+                                miei dati a società di terzi, per l’invio,
+                                da parte di questi, di materiale informativo e/o pubblicitario sui propri prodotti e
+                                servizi.</label>
+                        </p>
+
+                        <div class="center">
+                            <button type="submit" name="btn-signup"
+                                    class="orange darken-2 waves-effect waves-light btn-large">Registrati
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="parallax">
+    <img src="images/handshake4.jpg" style="display: block; width: 100%;
+     background-color: #000000; opacity: 0.5;">
+</div>
+
+<div id="chisiamo" style="background-color: #455a64; padding-top:50px; padding-bottom:50px">
+    <div class="container valign">
+        <div class="row center">
+            <div class="col s12">
+                <h4 style="margin-top: 0;" class="orange-text"><i>Chi siamo?</i></h4>
+
+                <p style="font-size:1.30rem;margin-bottom:0;" class="white-text header light">{{strings.chi_siamo}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="faq" class="container valign" style="padding-top:50px; padding-bottom:50px">
+
+    <div class="row">
+        <h4 class="orange-text center"><i>F.A.Q.</i></h4>
+
+        <div class="col s6">
+
+            <p style="font-size:1.40rem;" class="blue-grey-text text-darken-2">
+                {{strings.faq1_question}}
+            </p>
+
+            <p style="font-size:1.10rem;" class="blue-grey-text light text-lighten-2">
+                {{strings.faq1}}
+            </p>
+            <br>
+
+            <p style="font-size:1.40rem;" class="blue-grey-text text-darken-2">
+                {{strings.faq2_question}}
+            </p>
+
+            <p style="font-size:1.10rem;" class="blue-grey-text light text-lighten-2">
+                {{strings.faq2}}
+            </p>
+        </div>
+        <div class="col s6">
+            <p style="font-size:1.40rem;" class="blue-grey-text text-darken-2">
+                {{strings.faq3_question}}
+            </p>
+
+            <p style="font-size:1.10rem;" class="blue-grey-text light text-lighten-2">
+                {{strings.faq3}}
+            </p>
+            <br>
+
+            <p style="font-size:1.40rem;" class="blue-grey-text text-darken-2">
+                {{strings.faq4_question}}
+            </p>
+
+            <p style="font-size:1.10rem;" class="blue-grey-text light text-lighten-2">
+                {{strings.faq4}}
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<div id="pagamenti" style="background-color: #455a64; padding-top:50px; padding-bottom:50px">
+    <div class="container valign">
+        <div class="row center">
+            <h4 class="orange-text center"><i>Pagamenti</i></h4>
+
+            <p style="font-size:1.40rem;" class="white-text light center">
+                {{strings.payments}}
+            </p>
+
+            <div class="col s4 right-align">
+                <a href="http://www.postepay.it/" target="_blank"><img src="/images/postepay.png"></a>
+            </div>
+            <div class="col s4 center">
+                <a href="http://www.paypal.it/" target="_blank"><img src="/images/paypal.png"></a>
+            </div>
+            <div class="col s4 left-align">
+                <a href="https://www.skrill.com/it/" target="_blank"><img src="/images/skrill.png"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="contatti" class="container valign" style="padding-top:50px; padding-bottom:50px">
+
+    <div class="row">
+        <h4 class="orange-text center"><i>Contatti</i></h4>
+
+        <p style="font-size:1.40rem;" class="blue-grey-text text-darken-2 light center">
+            {{strings.contacts}}
+        </p>
+
+        <div class="col s6 right-align" style="padding-right:50px">
+            <a href="https://www.facebook.com/clicktoprofit/?fref=ts" target="_blank"><img
+                    src="/images/facebook.png"></a>
+        </div>
+        <div class="col s6 left-align" style="padding-left:50px">
+            <a ui-sref="email_form"><img src="/images/email.png"></a>
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="page-footer blue-grey darken-1" style="padding:0">
+    <div class="footer-copyright blue-grey darken-2 ">
+        <div class="container blue-grey darken-2 center">
+            <a class="white-text text-lighten-3">Copyright © 2015 Click2profit</a>
+        </div>
+    </div>
+</footer>

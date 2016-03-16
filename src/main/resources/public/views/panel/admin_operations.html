@@ -1,0 +1,87 @@
+<select class="browser-default" ng-model="selectedUser" ng-change="change()"
+        ng-options="user.name + ' ' + user.surname + ' - ' + user.email for user in users">
+    <option value="" disabled selected>Utente</option>
+</select>
+<br>
+
+<div class="valign center" ng-if="!selectedUser">
+    <i style="transform: rotate(-90deg);"
+       class="large material-icons blue-grey-text-text text-darken-2">trending_flat</i>
+    <h4>Seleziona un utente!</h4>
+</div>
+
+<div class="fixed-action-btn" style="bottom: 50px; right: 50px;" ng-if="selectedUser">
+    <button id="insert-btn" ng-click="a.add=!a.add"
+            class="btn-floating btn-large waves-effect waves-light orange darken-2">
+        <i class="material-icons">add</i>
+    </button>
+</div>
+
+<div class="card-panel" style="margin-top: 0;" ng-if="selectedUser">
+    <div ng-if="a.operations.length">
+        <h5>{{user.name}} {{user.surname}}</h5>
+        <table class="striped operation" id="table">
+            <thead>
+            <tr>
+                <th style="width: 18%">
+                    <a class="btn-flat no-padding" ng-click="order('company')">Azienda</a>
+                    <span class="sortorder" ng-show="predicate === 'company'" ng-class="{reverse:reverse}"></span>
+                </th>
+                <th style="width: 18%">
+                    <a class="btn-flat no-padding" ng-click="order('type')">Tipo</a>
+                    <span class="sortorder" ng-show="predicate === 'type'" ng-class="{reverse:reverse}"></span>
+                </th>
+                <th style="width: 24%">
+                    <a class="btn-flat no-padding" ng-click="order('link')">Link</a>
+                    <span class="sortorder" ng-show="predicate === 'link'" ng-class="{reverse:reverse}"></span>
+                </th>
+                <th style="width: 25%">
+                    <a class="btn-flat no-padding" ng-click="order('date')">Data e ora</a>
+                    <span class="sortorder" ng-show="predicate === 'date'" ng-class="{reverse:reverse}"></span>
+                </th>
+                <th>
+                    <a class="btn-flat no-padding" ng-click="order('profit')">Profitto</a>
+                    <span class="sortorder" ng-show="predicate === 'profit'" ng-class="{reverse:reverse}"></span>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr ng-repeat="operation in a.operations | orderBy:predicate:reverse">
+                <td>{{operation.company}}</td>
+                <td>{{operation.type}}</td>
+                <td><a href="{{operation.link}}" target="_blank">{{operation.link}}</a></td>
+                <td>{{operation.date}}, alle {{operation.time}}</td>
+                <td>{{operation.profit}} &euro;</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="center" ng-if="!a.operations.length">
+        <p style="font-size:1.40rem;" class="blue-grey-text text-darken-2">
+            Questo utente non ha ancora effettuato operazioni.
+        </p>
+    </div>
+</div>
+
+<div class="card-panel row" style="margin:20px 0 0 0;" ng-if="a.add">
+    <table>
+        <tr>
+            <th style="padding: 0 5px 0 5px;width: 18%">
+                <select class="browser-default"
+                        ng-model="a.selectedCampaign"
+                        ng-options="campaign.company for campaign in campaigns">
+                    <option value="" disabled selected>Campagna</option>
+                </select>
+            </th>
+            <th style="padding: 0 5px 0 5px;width: 18%">{{a.selectedCampaign.type}}</th>
+            <th style="padding: 0 5px 0 5px;width: 24%"><a href="{{operation.link}}" target="_blank">{{a.selectedCampaign.link}}</a></th>
+            <th style="padding: 0 5px 0 5px;width: 25%">{{date}}, alle {{time}}</th>
+            <th style="padding: 0 5px 0 5px;width: 10%">{{a.selectedCampaign.profit}} &euro;</th>
+            <th><a style="padding: 0 5px 0 5px;" ng-click="confirm_function()" class="btn-flat orange-text darken-2">
+                <i class="material-icons">done</i>
+            </a></th>
+        </tr>
+    </table>
+</div>

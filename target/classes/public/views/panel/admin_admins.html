@@ -1,0 +1,62 @@
+<div class="fixed-action-btn" style="bottom: 50px; right: 50px;">
+    <button id="insert-btn" ng-click="user.add=!user.add"
+            class="btn-floating btn-large waves-effect waves-light orange darken-2">
+        <i class="material-icons">add</i>
+    </button>
+</div>
+
+<div class="card-panel" style="margin:0;">
+    <table class="striped" id="table">
+        <thead>
+        <tr>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('email')">Email</a>
+                <span class="sortorder" ng-show="predicate === 'email'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('name')">Nome</a>
+                <span class="sortorder" ng-show="predicate === 'name'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th>
+                <a class="btn-flat no-padding" ng-click="order('surname')">Cognome</a>
+                <span class="sortorder" ng-show="predicate === 'surname'" ng-class="{reverse:reverse}"></span>
+            </th>
+            <th class="right-align"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr ng-repeat="admin in admins | orderBy:predicate:reverse">
+            <td>{{admin.email}}</td>
+            <td>{{admin.name}}</td>
+            <td>{{admin.surname}}</td>
+            <td class="right-align">
+                <a ng-click="delete()"
+                   class="btn-flat orange-text darken-2">
+                    <i class="material-icons">delete</i>
+                </a>
+            </td>
+        </tr>
+        <tr id="insert-form" style="height: 0%" ng-if="user.add">
+            <td style="padding: 10px 0 10px 0;">
+                <select class="browser-default"
+                        ng-model="user.selectedUser" ng-options="user.email for user in users">
+                    <option value="" disabled selected>Utente</option>
+                </select>
+            </td>
+            <td>
+                {{user.selectedUser.name}}
+            </td>
+            <td>
+                {{user.selectedUser.surname}}
+            </td>
+            <td class="right-align">
+                <a ng-click="confirm_function()"
+                   class="btn-flat orange-text darken-2">
+                    <i class="material-icons">done</i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
